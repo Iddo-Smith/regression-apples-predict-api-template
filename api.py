@@ -33,8 +33,7 @@ static_model = load_model(
     path_to_model='assets/trained-models/apples_simple_lm_regression.pkl')
 
 print ('-'*40)
-print (load_model(path_to_model='assets/trained-models/apples_simple_lm_regression.pkl'))
-#Model succesfully loaded')
+print ('Model succesfully loaded')
 print ('-'*40)
 
 # Define the API's interface.
