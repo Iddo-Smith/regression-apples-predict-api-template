@@ -72,7 +72,7 @@ def _preprocess_data(data):
     
     #Creating data sets
     train = df_train[['Weight_Kg','Low_Price', 'High_Price', 'Sales_Total', 'Total_Qty_Sold','Total_Kg_Sold']]
-    
+    x_train, x_test, y_train, y_test = train_test_split(train, test, test_size=0.20, random_state=1)
     #feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
     #predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
                                 
