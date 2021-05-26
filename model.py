@@ -48,7 +48,7 @@ def _preprocess_data(data):
     # Convert the json string to a python dictionary object
     feature_vector_dict = json.loads(data)
     # Load the dictionary as a Pandas DataFrame.
-    df_train = pd.DataFrame.from_dict([feature_vector_dict])
+    feature_vector_df = pd.DataFrame.from_dict([feature_vector_dict])
 
     # ---------------------------------------------------------------
     # NOTE: You will need to swap the lines below for your own data
@@ -60,25 +60,13 @@ def _preprocess_data(data):
 
     # ----------- Replace this code with your own preprocessing steps --------
     
-    #Filtering Commodities for APPLE GOLDEN DELICIOUS
-    df_train = df_train[df_train['Commodities']=='APPLE GOLDEN DELICIOUS']   
-    
-    #Removing negative values
-    df_train = df_train._get_numeric_data()
-    df_train[df_train < 0] = 0
-        
-    #Removing all infinity and 'not a number' values
-    df_train = df_train.replace([np.inf, -np.inf, 0], np.nan).dropna(axis=0)
-    
-    #Creating data sets
-    train = df_train[['Weight_Kg','Low_Price', 'High_Price', 'Sales_Total', 'Total_Qty_Sold','Total_Kg_Sold']]
-    x_train, x_test, y_train, y_test = train_test_split(train, test, test_size=0.20, random_state=1)
-    #feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
-    #predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
+
+    feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
+    predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
                                 
     # ------------------------------------------------------------------------
 
-    return train
+    return predict_vector
 
 def load_model(path_to_model:str):
     """Adapter function to load our pretrained model into memory.
