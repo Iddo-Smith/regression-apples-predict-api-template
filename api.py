@@ -56,5 +56,5 @@ def model_prediction():
 # When developing your API, set `debug=True`
 # This will allow Flask to automatically restart itself everytime you
 # update your API code.
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=False)
+#if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port=5000, debug=False)
