@@ -60,9 +60,19 @@ def _preprocess_data(data):
 
     # ----------- Replace this code with your own preprocessing steps --------
     
+    df_train = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
+    
+    #Removing negative values
+    df_train = df_train._get_numeric_data()
+    df_train[df_train < 0] = 0
+    
+    #Removing all infinity and 'not a number' values
+    df_train = df_train.replace([np.inf, -np.inf, 0], np.nan).dropna(axis=0)
+    
+    predict_vector = df_train[['Weight_Kg','Low_Price', 'High_Price', 'Sales_Total', 'Total_Qty_Sold','Total_Kg_Sold']]
 
-    feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
-    predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
+    #feature_vector_df = feature_vector_df[(feature_vector_df['Commodities'] == 'APPLE GOLDEN DELICIOUS')]
+    #predict_vector = feature_vector_df[['Total_Qty_Sold','Stock_On_Hand']]
                                 
     # ------------------------------------------------------------------------
 
